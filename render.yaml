@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: pcm-to-mp3
+    env: node
+    buildCommand: |
+      apt-get update && apt-get install -y ffmpeg && npm install
+    startCommand: npm start
