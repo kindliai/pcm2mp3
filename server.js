@@ -10,7 +10,7 @@ app.post('/convert', upload.single('audio'), (req, res) => {
   const inFile  = req.file.path;
   const outFile = `${inFile}.mp3`;
 
-  exec(`ffmpeg -f s16le -ar 24000 -ac 1 -i ${inFile} -codec:a libmp3lame -qscale:a 2 ${outFile}`,
+  exec(`ffmpeg -i ${inFile} -codec:a libmp3lame -qscale:a 4 ${outFile}`,
     err => {
       if (err) return res.status(500).send('ffmpeg error');
       res.download(outFile, 'audio.mp3', () => {
